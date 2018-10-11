@@ -273,7 +273,7 @@ class Sweeper {
           minesPerEdge = this.totalMines - this.foundMines;
           // And set somethingHappened to true
           didSomething = true;
-          break;
+          return true;
         default:
           // If multiple, save as Tank Object
           let edgeTanks = [];
