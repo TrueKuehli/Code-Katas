@@ -258,7 +258,7 @@ class Sweeper {
       // Is there more than one valid option?
       switch (validated.length) {
         case 0:
-          throw new Error('No valid mine configurations found.');
+          throw new Error('No valid mine configurations found. Map: \n' + this.toMapString());
         case 1:
           for (let unknown of validated[0]) {
             // Set them to their predicted output
