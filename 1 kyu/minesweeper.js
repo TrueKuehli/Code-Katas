@@ -289,8 +289,7 @@ class Sweeper {
 
     // If there are fields, that aren't mines in any of the potential solutions
     //   they can be safely opened up
-    for (let i = 0; i < edges.length; i = 1) {
-      validTanks || edges
+    for (let i = 0; i < edges.length; i++) {
       let edge = edges[i];
       let tanks = validTanks[i];
 
@@ -495,47 +494,40 @@ function solveMine(map, n) {
   return mineSolve.solveLoop();
 }
 
-// let map =
-// `? ? ? ? ? ?
+let map;
+let result;
+// map =`? ? ? ? ? ?
 // ? ? ? ? ? ?
 // ? ? ? 0 ? ?
 // ? ? ? ? ? ?
 // ? ? ? ? ? ?
 // 0 0 0 ? ? ?`;
-
-// let result =
-// `1 x 1 1 x 1
+// result = `1 x 1 1 x 1
 // 2 2 2 1 2 2
 // 2 x 2 0 1 x
 // 2 x 2 1 2 2
 // 1 1 1 1 x 1
 // 0 0 0 1 1 1`;
-
 // game.read(result);
-// console.log(solveMine(map,6), result);
+// console.log(solveMine(map,6) == result);
 
-// map=
-// `0 ? ?
+// map = `0 ? ?
 // 0 ? ?`;
-// result=
-// `0 1 x
+// result = `0 1 x
 // 0 1 1`;
 // game.read(result);
-// console.log(solveMine(map,1),"?");
+// console.log(solveMine(map,1) == "?");
 
 
-// map=
-// `0 ? ?
+// map = `0 ? ?
 // 0 ? ?`;
-// result=
-// `0 2 x
+// result = `0 2 x
 // 0 2 x`;
 // game.read(result);
-// console.log(solveMine(map,2),result);
+// console.log(solveMine(map,2) == result);
 
 
-// map=
-// `? ? ? ? 0 0 0
+// map = `? ? ? ? 0 0 0
 // ? ? ? ? 0 ? ?
 // ? ? ? 0 0 ? ?
 // ? ? ? 0 0 ? ?
@@ -544,8 +536,7 @@ function solveMine(map, n) {
 // 0 ? ? ? 0 ? ?
 // 0 0 0 0 0 ? ?
 // 0 0 0 0 0 ? ?`;
-// result=
-// `1 x x 1 0 0 0
+// result = `1 x x 1 0 0 0
 // 2 3 3 1 0 1 1
 // 1 x 1 0 0 1 x
 // 1 1 1 0 0 1 1
@@ -555,7 +546,7 @@ function solveMine(map, n) {
 // 0 0 0 0 0 1 x
 // 0 0 0 0 0 1 1`;
 // game.read(result);
-// console.log(solveMine(map,6), result);
+// console.log(solveMine(map,6) == result);
 
 // map = `? ? ? 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 // ? ? ? 0 0 0 0 0 0 0 0 ? ? ? ? 0 0
@@ -568,17 +559,32 @@ function solveMine(map, n) {
 // x 1 0 0 1 2 x 1 0 1 x 2 3 3 3 x 1
 // 1 1 0 0 1 x 2 1 0 1 1 1 1 x 2 1 1`;
 // game.read(result);
-// console.log(solveMine(map, 9), result);
+// console.log(solveMine(map, 9) == result);
 
-map = `? ? 0 0 0 0 0 0 0
-? ? ? ? ? 0 ? ? ?
-? ? ? ? ? ? ? ? ?
-? ? ? ? ? ? ? ? ?
-? ? ? 0 0 ? ? ? 0`;
-result = `x 1 0 0 0 0 0 0 0
-1 1 1 1 1 0 1 1 1
-1 1 2 x 1 1 2 x 1
-1 x 2 1 1 1 x 2 1
-1 1 1 0 0 1 1 1 0`;
+// map = `? ? 0 0 0 0 0 0 0
+// ? ? ? ? ? 0 ? ? ?
+// ? ? ? ? ? ? ? ? ?
+// ? ? ? ? ? ? ? ? ?
+// ? ? ? 0 0 ? ? ? 0`;
+// result = `x 1 0 0 0 0 0 0 0
+// 1 1 1 1 1 0 1 1 1
+// 1 1 2 x 1 1 2 x 1
+// 1 x 2 1 1 1 x 2 1
+// 1 1 1 0 0 1 1 1 0`;
+// game.read(result);
+// console.log(solveMine(map, 5) == result);
+
+map = `0 0 0 0 ? ? ? ? ? ?
+0 0 0 ? ? ? ? ? ? ?
+0 ? ? ? ? ? ? ? ? ?
+? ? ? ? ? ? ? ? ? 0
+? ? ? ? 0 0 0 0 0 0
+? ? ? 0 0 0 0 0 0 0`;
+result = `0 0 0 0 1 1 1 1 1 1
+0 0 0 1 2 x 2 2 x 1
+0 1 1 2 x 2 2 x 2 1
+1 2 x 2 1 1 1 1 1 0
+1 x 2 1 0 0 0 0 0 0
+1 1 1 0 0 0 0 0 0 0`;
 game.read(result);
-console.log(solveMine(map, 5), result);
+console.log(solveMine(map, 6) == result);
