@@ -46,19 +46,18 @@ class Sweeper {
         fields[y][x] = new MineField(x, y, contentArray[x]);
 
         // Add previous elements to neighbors of current element
-        if (x > 0 && y > 0) fields[y][x].addNeighbor(fields[y-1][x-1]);
-        if (         y > 0) fields[y][x].addNeighbor(fields[y-1][x  ]);
-        if (x < l && y > 0) fields[y][x].addNeighbor(fields[y-1][x+1]);
-        if (x > 0         ) fields[y][x].addNeighbor(fields[y  ][x-1]);
+        if (x > 0 && y > 0) fields[y][x].neighbors.push(fields[y-1][x-1]);
+        if (         y > 0) fields[y][x].neighbors.push(fields[y-1][x  ]);
+        if (x < l && y > 0) fields[y][x].neighbors.push(fields[y-1][x+1]);
+        if (x > 0         ) fields[y][x].neighbors.push(fields[y  ][x-1]);
 
         // Add current element to neighbors of previous elements
-        if (x > 0 && y > 0) fields[y-1][x-1].addNeighbor(fields[y][x]);
-        if (         y > 0) fields[y-1][x  ].addNeighbor(fields[y][x]);
-        if (x < l && y > 0) fields[y-1][x+1].addNeighbor(fields[y][x]);
-        if (x > 0         ) fields[y  ][x-1].addNeighbor(fields[y][x]);
+        if (x > 0 && y > 0) fields[y-1][x-1].neighbors.push(fields[y][x]);
+        if (         y > 0) fields[y-1][x  ].neighbors.push(fields[y][x]);
+        if (x < l && y > 0) fields[y-1][x+1].neighbors.push(fields[y][x]);
+        if (x > 0         ) fields[y  ][x-1].neighbors.push(fields[y][x]);
       }
     }
-
     return fields;
   }
 
@@ -321,7 +320,6 @@ class Sweeper {
     //   on the board
     let sumSolution = validateTankMineNumber(validTanks);
     if (sumSolution == -1) return didSomething; // There are multiple solutions
-
     // Only one solution was returned. Apply the solution
     for (tank of sumSolution) {
       for (let unknown of tank) {
@@ -347,13 +345,6 @@ class MineField {
     this.y = y;
     this.markedAs = markedAs;
     this.neighbors = [];
-  }
-
-  /**
-   * @param {MineField} field
-   */
-  addNeighbor(field) {
-    this.neighbors.push(field);
   }
 
   open() {
